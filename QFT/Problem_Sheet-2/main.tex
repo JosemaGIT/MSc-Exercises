@@ -1,0 +1,322 @@
+\documentclass[12pt]{article}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\usepackage{hyphenat}
+
+\usepackage[a4paper]{geometry}
+\geometry{
+    left = 20mm,
+    top = 20mm,
+    right = 20mm,
+    bottom = 20mm
+}
+\usepackage{fancyhdr}
+
+\usepackage{enumitem}
+
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage{amssymb}
+\newcommand{\qedwhite}{\hfill \ensuremath{\Box}}
+\usepackage{tensor}
+\usepackage{braket}
+
+\usepackage{xcolor}
+
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{14.5pt}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead[C]{\textbf{QFT Problem Sheet 2 - Student: José Manuel Begines Sánchez}}
+
+\textbf{6.} Derive the expressions, in terms of creation and annihilation operators of states with well-defined momentum, for the operators total linear momentum and total angular momentum associated to a free real scalar field. Based on the latter result, argue that the particle excitations associated to the field have spin 0.
+
+\color{blue}
+
+\textbf{Solution}
+
+Applying Noether's Theorem to the translational invariance of the real scalar field in Classical Field theory tells us that this field has a conserved charged that we interprete as the momentum of the field:
+\[
+    \vec{P} = \int d^3x \partial_t \phi \vec{\nabla} \phi
+\]
+Applying, canonical quantization and the normal ordering of operators the lineal momentum operator would be:
+\[
+    \hat{ \vec{P} } = ~~ - :\int d^3x \hat{\pi} \vec{\nabla}\hat{\phi}:
+\]
+Considering:
+\[
+    \begin{aligned}
+        \hat{ \phi }(\vec{x}) &= \int \frac{d^3p}{(2\pi)^3}\frac{1}{\sqrt{2E(\vec{p})}}\left\{\hat{a}(\vec{p})e^{i\vec{p} \vec{x}} + \hat{a}^\dagger(\vec{p})e^{-i\vec{p} \cdot \vec{x}}\right\}, \\
+        \hat{ \pi }(\vec{x}) &= -i \int \frac{d^3p}{(2\pi)^3}\sqrt{\frac{E(\vec{p})}{2}}\left\{\hat{a}(\vec{p})e^{i\vec{p} \cdot \vec{x}} - \hat{a}^\dagger(\vec{p})e^{-i\vec{p} \cdot \vec{x}}\right\},
+    \end{aligned}
+\]
+so:
+\[
+    \begin{aligned}
+        \hat{ P }_i &= ~~ :\frac{1}{2}\int d^3x \frac{d^3pd^3q}{(2\pi)^6} \sqrt{\frac{E(\vec{p})}{E(\vec{q})}}q_i\left\{\hat{a}(\vec{p})e^{i\vec{p}\cdot \vec{x}} - \hat{a}^\dagger(\vec{p})e^{-i\vec{p} \cdot \vec{x}}\right\}\left\{-\hat{a}(\vec{q})e^{i\vec{q} \cdot \vec{x}} + \hat{a}^\dagger(\vec{q})e^{-i\vec{q} \cdot \vec{x}}\right\}: \\
+        &= ~~ :\frac{1}{2}\int d^3x \frac{d^3pd^3q}{(2\pi)^6}\sqrt{\frac{E(\vec{p})}{E(\vec{q})}} q_i\left\{-\hat{a}(\vec{p})\hat{a}(\vec{q})e^{i(\vec{p}+\vec{q})\cdot \vec{x}} + \hat{a}^\dagger(\vec{p})\hat{a}(\vec{q})e^{-i(\vec{p}-\vec{q}) \cdot \vec{x}}\right.
+    \end{aligned}
+\]
+\[
+    \left.+\hat{a}(\vec{p})\hat{a}^\dagger(\vec{q})e^{i(\vec{p}-\vec{q}) \cdot \vec{x}}-\hat{a}^\dagger(\vec{p})\hat{a}^\dagger(\vec{q})e^{-i(\vec{p}+\vec{q}) \cdot \vec{x}}\right\}
+\]
+\[
+        = ~ :\frac{1}{2}\int \frac{d^3p d^3q}{(2\pi)^3}\sqrt{\frac{E(\vec{p})}{E(\vec{q})}} q_i\left\{\left[\hat{a}(\vec{p})\hat{a}^\dagger(\vec{q}) + \hat{a}^\dagger(\vec{p})\hat{a}(\vec{q})\right]\delta^{(3)}(\vec{p}-\vec{q})-\left[\hat{a}(\vec{p})\hat{a}(\vec{q})+\hat{a}^\dagger(\vec{p})\hat{a}^\dagger(\vec{q})\right]\delta^{(3)}(\vec{p} + \vec{q})\right\}:
+\]
+\[
+        = ~ :\frac{1}{2}\int \frac{d^3p}{(2\pi)^3} p_i\left\{\hat{a}(\vec{p})\hat{a}(-\vec{p})+\hat{a}^\dagger(\vec{p})\hat{a}^\dagger(-\vec{p})+\hat{a}(\vec{p})\hat{a}^\dagger(\vec{p}) + \hat{a}^\dagger(\vec{p})\hat{a}(\vec{p})\right\}:
+\]
+The first two terms define an odd integrand, so that it integrates to a zero value.And considering the normal ordering of these products we obtain that:
+\[
+    \hat{P}_i = \int \frac{d^3p}{(2\pi)^3}p_i \hat{a}^\dagger(\vec{p})\hat{a}(\vec{p})
+\]
+
+If we also consider rotational invariance we obtain its associated conserved charge, which we associate to the total angular momentum of the field:
+\[
+    J^i=\varepsilon_{ijk}\int d^3x ~ x^j \partial_t \phi \partial^k\phi
+\]
+Then, by canonical quantization we say that:
+\[
+    \hat{J}^i=\varepsilon^{ijk}:\int d^3x ~ x^j \hat{\pi} \partial^k\hat{\phi}:
+\]
+\[
+    \begin{aligned}
+        \hat{ J }^i &= ~~ -\varepsilon^{ijk}:\frac{1}{2}\int d^3x \frac{d^3pd^3q}{(2\pi)^6} \sqrt{\frac{E(\vec{p})}{E(\vec{q})}}x^jq^k\left\{\hat{a}(\vec{p})e^{i\vec{p}\cdot \vec{x}} - \hat{a}^\dagger(\vec{p})e^{-i\vec{p} \cdot \vec{x}}\right\}\left\{-\hat{a}(\vec{q})e^{i\vec{q} \cdot \vec{x}} + \hat{a}^\dagger(\vec{q})e^{-i\vec{q} \cdot \vec{x}}\right\}: \\
+        &= ~~ -\varepsilon^{ijk}:\frac{1}{2}\int d^3x \frac{d^3pd^3q}{(2\pi)^6}\sqrt{\frac{E(\vec{p})}{E(\vec{q})}} x^jq^k\left\{-\hat{a}(\vec{p})\hat{a}(\vec{q})e^{i(\vec{p}+\vec{q})\cdot \vec{x}} + \hat{a}^\dagger(\vec{p})\hat{a}(\vec{q})e^{-i(\vec{p}-\vec{q}) \cdot \vec{x}}\right.
+    \end{aligned}
+\]
+\[
+    \left.+\hat{a}(\vec{p})\hat{a}^\dagger(\vec{q})e^{i(\vec{p}-\vec{q}) \cdot \vec{x}}-\hat{a}^\dagger(\vec{p})\hat{a}^\dagger(\vec{q})e^{-i(\vec{p}+\vec{q}) \cdot \vec{x}}\right\}:
+\]
+\[
+    = ~~ -\varepsilon^{ijk}:\frac{1}{2}\int d^3x \frac{d^3pd^3q}{(2\pi)^6}\sqrt{\frac{E(\vec{p})}{E(\vec{q})}} q^k \left\{i\hat{a}(\vec{p})\hat{a}(\vec{q})\frac{\partial}{\partial p_j}e^{i(\vec{p}+\vec{q})\cdot \vec{x}} + i\hat{a}^\dagger(\vec{p})\hat{a}(\vec{q})\frac{\partial}{\partial p_j}e^{-i(\vec{p}-\vec{q}) \cdot \vec{x}}\right.
+\]
+\[
+    \left.-i\hat{a}(\vec{p})\hat{a}^\dagger(\vec{q})\frac{\partial}{\partial p_j}e^{i(\vec{p}-\vec{q}) \cdot \vec{x}}-i\hat{a}^\dagger(\vec{p})\hat{a}^\dagger(\vec{q})\frac{\partial}{\partial p_j}e^{-i(\vec{p}+\vec{q}) \cdot \vec{x}}\right\}:
+\]
+\[
+    = ~~ -i\varepsilon^{ijk}:\frac{1}{2}\int d^3x \frac{d^3pd^3q}{(2\pi)^6}\sqrt{\frac{E(\vec{p})}{E(\vec{q})}} q^k \left\{\hat{a}(\vec{p})\hat{a}(\vec{q})\frac{\partial}{\partial p_j}e^{i(\vec{p}+\vec{q})\cdot \vec{x}} + \hat{a}^\dagger(\vec{p})\hat{a}(\vec{q})\frac{\partial}{\partial p_j}e^{-i(\vec{p}-\vec{q}) \cdot \vec{x}}\right.
+\]
+\[
+    \left.-\hat{a}(\vec{p})\hat{a}^\dagger(\vec{q})\frac{\partial}{\partial p_j}e^{i(\vec{p}-\vec{q}) \cdot \vec{x}}-\hat{a}^\dagger(\vec{p})\hat{a}^\dagger(\vec{q})\frac{\partial}{\partial p_j}e^{-i(\vec{p}+\vec{q}) \cdot \vec{x}}\right\}:
+\]
+\[
+    = ~~ -i\varepsilon^{ijk}:\frac{1}{2}\int \frac{d^3pd^3q}{(2\pi)^3}\sqrt{\frac{E(\vec{p})}{E(\vec{q})}} q^k \left\{\left[\hat{a}(\vec{p})\hat{a}(\vec{q})-\hat{a}^\dagger(\vec{p})\hat{a}^\dagger(\vec{q})\right]\frac{\partial}{\partial p_j}\delta^{(3)}(\vec{p}+\vec{q}) \right.
+\]
+\[
+    \left.+ \left[\hat{a}^\dagger(\vec{p})\hat{a}(\vec{q})-\hat{a}(\vec{p})\hat{a}^\dagger(\vec{q})\right]\frac{\partial}{\partial p_j}\delta^{(3)}(\vec{p}-\vec{q})\right\}:
+\]
+\[
+    = ~~ -i\varepsilon^{ijk}:\frac{1}{2}\int \frac{d^3pd^3q}{(2\pi)^3} q^k \left\{\left[\frac{\partial}{\partial p_j}\left(\hat{a}(\vec{p})\sqrt{\frac{E(\vec{p})}{E(\vec{q})}}\right)\hat{a}(\vec{q})-\frac{\partial}{\partial p_j}\left(\hat{a}^\dagger(\vec{p})\sqrt{\frac{E(\vec{p})}{E(\vec{q})}}\right)\hat{a}^\dagger(\vec{q})\right]\delta^{(3)}(\vec{p}+\vec{q}) \right.
+\]
+\[
+    \left.+ \left[\frac{\partial}{\partial p_j}\left(\hat{a}^\dagger(\vec{p})\sqrt{\frac{E(\vec{p})}{E(\vec{q})}}\right)\hat{a}(\vec{q})-\frac{\partial}{\partial p_j}\left(\hat{a}(\vec{p})\sqrt{\frac{E(\vec{p})}{E(\vec{q})}}\right)\hat{a}^\dagger(\vec{q})\right]\delta^{(3)}(\vec{p}-\vec{q})\right\}:
+\]
+So that:
+\[
+    q^k\frac{\partial}{\partial p_j}\left(\hat{a}(\vec{p})\sqrt{\frac{E(\vec{p})}{E(\vec{q})}}\right)=\hat{a}(\vec{p})\frac{q^kp^j}{\sqrt{E(\vec{q})E(\vec{p})}}+q^k\frac{\partial\hat{a}(\vec{p})}{\partial p_j}\sqrt{\frac{E(\vec{p})}{E(\vec{q})}}
+\]
+But the first term is symmetric, so after multiplying by the levi-civita symbol it will not contribute. So we will be left with the expression:
+\[
+    \hat{J}^i = -i\varepsilon^{ijk}:\frac{1}{2}\int\frac{d^3p}{(2\pi)^3}p^k\left\{\frac{\partial \hat{a}^\dagger(\vec{p})}{\partial p_j}\hat{a}^\dagger(-\vec{p})-\frac{\partial \hat{a}(\vec{p})}{\partial p_j}\hat{a}(-\vec{p})+\frac{\partial \hat{a}^\dagger(\vec{p})}{\partial p_j}\hat{a}(\vec{p})-\frac{\partial \hat{a}(\vec{p})}{\partial p_j}\hat{a}^\dagger(\vec{p})\right\}:
+\]
+But we can prove that the first two terms of this integral are null (We are supposing a null contribution from the boundary):
+\[
+    I = \int d^3p ~ p^k\frac{\partial\hat{a}(\vec{p})}{\partial p_j}\hat{a}(-\vec{p}) = \text{Integrating by parts and Permutating}=\]
+\[
+    -\int d^3p ~ \left\{\underbrace{\cancel{\delta^{jk}\hat{a}(-\vec{p})\hat{a}(\vec{p})}}_{Symmetric}+p^k\frac{\partial\hat{a}(-\vec{p})}{\partial p_j}\hat{a}(\vec{p})\right\} = \{\vec{p}\rightarrow -\vec{p}\} = -\int d^3p ~ p^k\frac{\partial\hat{a}(\vec{p})}{\partial p_j}\hat{a}(-\vec{p}) = -I = 0
+\]
+Then, after applying normal ordering and integration by parts the third term:
+\[
+    \hat{J}^i = i\varepsilon^{ijk}\int\frac{d^3p}{(2\pi)^3}p^k\hat{a}^\dagger(\vec{p})\frac{\partial \hat{a}(\vec{p})}{\partial p_j} = -i\varepsilon^{ijk}\int\frac{d^3p}{(2\pi)^3}p^k\frac{\partial \hat{a}^\dagger(\vec{p})}{\partial p_j}\hat{a}(\vec{p})
+\]
+If we now apply this operator to a single-particle state, we get:
+\[
+    J^i \ket{\vec{p}}= -i\varepsilon^{ijk}\int\frac{d^3q}{(2\pi)^3}q^k\frac{\partial \hat{a}^\dagger(\vec{q})}{\partial q_j}\hat{a}(\vec{q})a^\dagger(\vec{p})\ket{0} \underbrace{=}_{Commute} i\varepsilon^{ijk}\int d^3qq^k\frac{\partial \hat{a}^\dagger(\vec{q})}{\partial q_j}\delta^{(3)}(\vec{p}-\vec{q})\ket{0}
+\]
+\[
+    = J^i\ket{\vec{p}} = i\varepsilon^{ijk}p^j\frac{\partial \hat{a}^\dagger(\vec{p})}{\partial p^k}\ket{0}
+\]
+However, if this state has 0 momentum the result of applying this operator is null, which tells us that the scalar field is spin-less.
+
+\qedwhite
+
+\color{black}
+
+\newpage
+\textbf{7.} Take the Klein-Gordon equation for a complex classical filed \(\psi\),
+\[
+    \partial_\mu \partial^\mu \psi + m^2 \psi = 0.
+\]
+
+\begin{enumerate}[label=(\alph*), start = 1]
+    \item Show that in the non relativistic limit \(|\vec{p}| \ll m\) the equation reduces to
+        \[i\frac{\partial\tilde{\psi}}{\partial t} = - \frac{1}{2m}\nabla^2\tilde{\psi}\]
+    where \(\tilde{\psi}(\vec{x},t)=e^{imt}\psi(\vec{x},t)\). (Hint: note that in configuration space the non-relativistic limit can be interpreted as \(|\partial_t^2\tilde{\psi}|\ll m|\partial_t\tilde{\psi}|\)
+\end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (a)}
+
+Lets consider the Klein Gordon equation in terms of \(\tilde{\psi}\):
+\[
+    \partial_t^2\left\{e^{-imt}\tilde{\psi}\right\}-e^{-imt}\nabla^2\tilde{\psi}+m^2e^{-imt}\tilde{\psi}=\partial_t\left\{e^{-imt}\partial_t\tilde{\psi}-ime^{-imt}\tilde{\psi}\right\}-e^{-imt}\nabla^2\tilde{\psi}+m^2e^{-imt}\tilde{\psi}
+\]
+\[
+    =e^{-imt}\partial_t^2\tilde{\psi}-i2me^{-imt}\partial_t\tilde{\psi}-\cancel{m^2e^{-imt}\tilde{\psi}}-e^{-imt}\nabla^2\tilde{\psi}+\cancel{m^2e^{-imt}\tilde{\psi}} =: 0
+\]
+Then, we have
+\[
+    \frac{\partial_t^2\tilde{\psi}}{i2m\partial_t\tilde{\psi}}-1=\frac{1}{i2m\partial_t\tilde{\psi}}\nabla^2\tilde{\psi}\Longrightarrow\left\{\left|\frac{\partial_t^2\tilde{\psi}}{m\partial_t\tilde{\psi}}\right|\ll 1\right\}\Longrightarrow i\frac{\partial\tilde{\psi}}{\partial t} \approx -\frac{1}{2m}\nabla^2\tilde{\psi}
+\]
+\qedwhite
+
+\color{black}
+
+\begin{enumerate}[label=(\alph*), start = 2]
+    \item The above equation provides the classical solutions to the theory given by
+        \[
+            \mathcal{L} = i\tilde{\psi}^*\partial_t\tilde{\psi}-\frac{1}{2m}\vec{\nabla}\tilde{\psi}^*\cdot\vec{\nabla}\tilde{\psi}
+        \]
+        Show that the theory is symmetric under global rephasings of \(\tilde{\psi}\), and that the associated Noether current is
+        \[
+            j^0=-\tilde{\psi}^*\tilde{\psi} ~~~;~~~ \vec{j}=\frac{i}{2m}\left(\tilde{\psi}^*\vec{\nabla}\tilde{\psi}-\tilde{\psi}\vec{\nabla}\tilde{\psi}^*\right)
+        \]
+\end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (b)}
+
+It is easily seen that this Lagrangian is invariant under the transformation:
+\[
+    \tilde{\psi}\longrightarrow e^{i\alpha}\tilde{\psi}
+\]
+So, following Noether's theorem and considering that the infinitesimal version of this transformations gives us \(\delta\tilde{\psi}=i\alpha\tilde{\psi} ~~;~~ \delta\tilde{\psi}^*=-i\alpha \tilde{\psi}^*\) we can obtain the following conserved 4-current:
+\[
+    \frac{\partial \mathcal{L}}{\partial(\partial_0 \tilde{\psi}^*)} = 0 ~~;~~ \frac{\partial \mathcal{L}}{\partial(\partial_0 \tilde{\psi})} = i\tilde{\psi}^* \Longrightarrow j^0 = \frac{\partial \mathcal{L}}{\partial(\partial_0 \tilde{\psi})}\delta\tilde{\psi} = -\alpha\tilde{\psi}^*\tilde{\psi}
+\]
+\[
+    \frac{\partial \mathcal{L}}{\partial(\partial_i \tilde{\psi}^*)} = -\frac{1}{2m}\partial^i\tilde{\psi} ~~;~~    \frac{\partial \mathcal{L}}{\partial(\partial_i \tilde{\psi})} = -\frac{1}{2m}\partial^i\tilde{\psi}^*
+\]
+\[
+    \Longrightarrow j^i = \frac{\partial \mathcal{L}}{\partial(\partial_0 \tilde{\psi})}\delta\tilde{\psi} = \frac{\partial \mathcal{L}}{\partial(\partial_i \tilde{\psi})}\delta\tilde{\psi} + \frac{\partial \mathcal{L}}{\partial(\partial_i \tilde{\psi}^*)} \delta\tilde{\psi}^* = \frac{i\alpha}{2m}\left\{\tilde{\psi}^*\partial^i\tilde{\psi}-\tilde{\psi}\partial^i\tilde{\psi}^*\right\}
+\]
+
+where \(\alpha\) is just a scale factor of \(j^\mu\) that can be ignored.
+
+\qedwhite
+
+\color{black}
+
+\begin{enumerate}[label=(\alph*), start = 3]
+    \item Show that the Hamiltonian density has the form
+        \[\mathcal{H}=\frac{1}{2m}\vec{\nabla}\tilde{\psi}^*\cdot\vec{\nabla}\tilde{\psi},\]
+    i.e., there are no terms where the canonical momentum appears explicitly.
+\end{enumerate}
+
+\color{blue}
+
+\color{blue}
+
+\textbf{Solution (c)}
+
+Firstly let's calculate the Momentum conjugate of these fields:
+\[
+    \pi_1(x) = \frac{\partial\mathcal{L}}{\partial(\partial_t\tilde{\psi})}=i\tilde{\psi}^* ~~;~~\pi_2(x) = \frac{\partial\mathcal{L}}{\partial(\partial_t\tilde{\psi}^*)}=0 \text{ (Not defined)}
+\]
+Which leave us with the following Hamiltonian density:
+\[
+    \mathcal{H}=\pi_1\partial_t\tilde{\psi}+\pi_2\partial_t\tilde{\psi}^*-\mathcal{L}=\frac{1}{2m}\vec{\nabla}\tilde{\psi}^*\cdot\vec{\nabla}\tilde{\psi}
+\]
+
+\color{black}
+
+\begin{enumerate}[label=(\alph*), start = 4]
+    \item Show that quantizing the theory only requires one type of creator/annihilation operator, and that therefore there is only one type of particle in the quantum theory. Show furthermore that the dispersion relation has the non-relativistic form, viz.,
+        \[
+            \hat{H}\ket{\vec{p}}=\frac{|\vec{p}|^2}{2m}\ket{\vec{p}}
+        \]
+    and that the particle number
+        \[
+            \int d^3x :\hat{\tilde{\psi}}^\dagger\hat{\tilde{\psi}}
+        \]
+    is conserved. That is: in the non-relativistic limit there are no antiparticles, and hence no creation of particle-antiparticle pairs is possible.
+\end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (d)}
+
+If we consider the Schrodinger Equation that \(\tilde{\psi}\) fulfils, we extract its normal modes considering the following particular solutions:
+\[
+    \tilde{\psi}_{\vec{p}}=a(\vec{p})e^{-i(E+\vec{p}\cdot\vec{x})} ~~~:~~~E= \frac{|\vec{p}|^2}{2m}>0
+\]
+And a general solution then would be by lineal combination:
+\[
+    \tilde{\psi}(\vec{x},t) = \int \frac{d^3p}{(2\pi)^3} ~ a(\vec{p})e^{-i[E(\vec{p})t+\vec{p}\cdot\vec{x}]}
+\]
+Now, by canonical quantization and working in the Schrodinger picture, we consider
+\[
+    \begin{aligned}
+        \hat{\tilde{\psi}}(\vec{x}) &= \int \frac{d^3p}{(2\pi)^3} ~ \hat{a}(\vec{p})e^{-i\vec{p}\cdot\vec{x}} \\
+        \hat{\pi}_1 &= i\hat{\tilde{\psi}}^\dagger=i\int\frac{d^3p}{(2\pi)^3}\hat{a}^\dagger(\vec{p}) e^{\vec{p}\cdot\vec{x}}
+    \end{aligned}
+\]
+\[
+    \left[\hat{\tilde{\psi}}(\vec{x}),\hat{\tilde{\psi}}(\vec{y})\right]=0~~;~~\left[\hat{\pi}_1(\vec{x}),\hat{\pi}_1(\vec{y})\right]=0~~;~~\left[\hat{\tilde{\psi}}(\vec{x}),\hat{\pi}_1(\vec{y})\right]=i\delta^{(3)}(\vec{x}-\vec{y})
+\]
+So, considering that:
+\[
+    \int d^3x\hat{\tilde{\psi}}(\vec{x})e^{i\vec{p}\cdot\vec{x}}=\int d^3x\int \frac{d^3q}{(2\pi)^3} ~ \hat{a}(\vec{q})e^{-i\vec{q}\cdot\vec{x}}e^{i\vec{p}\cdot\vec{x}}=\int d^3q ~ \hat{a}(\vec{q})\delta^{(3)}(\vec{p}-\vec{q})=\hat{a}(\vec{p})
+\]
+
+\newpage
+
+Then:
+\[
+    \left[\hat{a}(\vec{p}),\hat{a}(\vec{q})\right] = \int d^3xd^3y\left[\hat{\tilde{\psi}}(\vec{x}),\hat{\tilde{\psi}}(\vec{y})\right]e^{i(\vec{p}\cdot\vec{x}+\vec{q}\cdot\vec{y})}=0
+\]
+\[
+    \begin{aligned}
+        \left[\hat{a}^\dagger(\vec{p}),\hat{a}^\dagger(\vec{q})\right] &= \int d^3xd^3y\left[\hat{\tilde{\psi}}^\dagger(\vec{x}),\hat{\tilde{\psi}}^\dagger(\vec{y})\right]e^{-i(\vec{p}\cdot\vec{x}+\vec{q}\cdot\vec{y})} = -\int d^3xd^3y\left[\hat{\pi}_1(\vec{x}),\hat{\pi}_1(\vec{y})\right]e^{-i(\vec{p}\cdot\vec{x}+\vec{q}\cdot\vec{y})}=0 \\
+        \left[\hat{a}(\vec{p}),\hat{a}^\dagger(\vec{q})\right] &= \int d^3xd^3y\left[\hat{\tilde{\psi}}(\vec{x}),\hat{\tilde{\psi}}^\dagger(\vec{y})\right]e^{i(\vec{p}\cdot\vec{x}-\vec{q}\cdot\vec{y})} = -i\int d^3xd^3y\left[\hat{\tilde{\psi}}(\vec{x}),\hat{\pi}_1(\vec{y})\right]e^{i(\vec{p}\cdot\vec{x}-\vec{q}\cdot\vec{y})}\\
+        &= \int d^3xd^3y\delta^{(3)}(\vec{x}-\vec{y})e^{i (\vec{p}\cdot \vec{x} - \vec{q}\cdot\vec{y})}= \int d^3xe^{i (\vec{p} - \vec{q})\cdot\vec{x}}=(2\pi)^3\delta^{(3)}(\vec{p}-\vec{q})
+    \end{aligned}
+\]
+Which means that these are creation and annihilation operators. However now this complex field just have one type of creation and annihilation. If we now consider the Hamiltonian density of part (c) we obtain:
+\[
+    \hat{H}=\int \frac{d^3xd^3qd^3p}{2m(2\pi)^6}\vec{p}\cdot\vec{q} ~ \hat{a}^\dagger(\vec{q})\hat{a}(\vec{p})e^{i(\vec{q}-\vec{p})\cdot\vec{x}}=\int \frac{d^3qd^3p}{2m(2\pi)^3}\vec{p}\cdot\vec{q} ~ \hat{a}^\dagger(\vec{q})\hat{a}(\vec{p})\delta^{(3)}(\vec{q}-\vec{p})
+\]
+\[
+    =\int \frac{d^3p|\vec{p}|^2}{2m(2\pi)^3} \hat{a}^\dagger(\vec{p})\hat{a}(\vec{p})
+\]
+And if we apply it to a one-particle state:
+\[
+    \begin{aligned}
+        \hat{H} &= \int \frac{d^3q|\vec{q}|^2}{2m(2\pi)^3} \hat{a}^\dagger(\vec{q})\hat{a}(\vec{q}) \ket{\vec{p}} = \int \frac{d^3q|\vec{q}|^2}{2m(2\pi)^3} \hat{a}^\dagger(\vec{q})\hat{a}(\vec{q})\hat{a}^\dagger(\vec{p})\ket{0} \\
+                &= \int \frac{d^3q|\vec{q}|^2}{2m(2\pi)^3} \hat{a}^\dagger(\vec{q})\left\{\cancel{\hat{a}^\dagger(\vec{p})\hat{a}(\vec{q})}+(2\pi)^3 \delta^{(3)}(\vec{p}-\vec{q}) \right\}\ket{0} = \frac{|\vec{p}|^2}{2m}\ket{\vec{p}}
+    \end{aligned}
+\]
+If we now consider:
+\[
+    \hat{N}=\int d^3x \hat{\tilde{\psi}}^\dagger\hat{\tilde{\psi}}=\int \frac{d^3xd^3qd^3p}{(2\pi)^6} ~ \hat{a}^\dagger(\vec{q})\hat{a}(\vec{p})e^{i(\vec{q}-\vec{p})\cdot\vec{x}}=\int \frac{d^3p}{(2\pi)^3} ~ \hat{a}^\dagger(\vec{p})\hat{a}(\vec{p})
+\]
+Then:
+\[
+    \begin{aligned}
+        [\hat{H},\hat{N}]&=\int\frac{d^3pd^3q|\vec{q}|^2}{2m(2\pi)^6}[\hat{a}^\dagger(\vec{q})\hat{a}(\vec{q}),\hat{a}^\dagger(\vec{p})\hat{a}(\vec{p})]=\int\frac{d^3pd^3q|\vec{q}|^2}{2m(2\pi)^6}\left\{\hat{a}^\dagger(\vec{q})\hat{a}(\vec{q})\hat{a}^\dagger(\vec{p})\hat{a}(\vec{p})-\hat{a}^\dagger(\vec{p})\hat{a}(\vec{p})\hat{a}^\dagger(\vec{q})\hat{a}(\vec{q})\right\}\\
+        &=\int\frac{d^3pd^3q|\vec{q}|^2}{2m(2\pi)^3}\left[\left\{\hat{a}^\dagger(\vec{q})\hat{a}(\vec{p})-\hat{a}^\dagger(\vec{p})\hat{a}(\vec{q})\right\}\delta^{(3)}(\vec{q}-\vec{p})+\left\{\hat{a}^\dagger(\vec{q})\hat{a}^\dagger(\vec{p})\hat{a}(\vec{q})\hat{a}(\vec{p})-\hat{a}^\dagger(\vec{p})\hat{a}^\dagger(\vec{q})\hat{a}(\vec{p})\hat{a}(\vec{q})\right\}\right]\\
+        &=\hat{0}
+    \end{aligned}
+\]
+Which means that this operator is conserved and consequently there are no antiparticles in this theory.
+
+\qedwhite
+
+\end{document}

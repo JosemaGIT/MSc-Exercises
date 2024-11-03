@@ -1,0 +1,371 @@
+\documentclass[12pt]{article}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\usepackage{hyphenat}
+
+\usepackage[a4paper]{geometry}
+\geometry{
+    left = 20mm,
+    top = 20mm,
+    right = 20mm,
+    bottom = 20mm
+}
+\usepackage{fancyhdr}
+
+\usepackage{enumitem}
+
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage{amssymb}
+\newcommand{\qedwhite}{\hfill \ensuremath{\Box}}
+\usepackage{tensor}
+\usepackage{braket}
+
+\usepackage{xcolor}
+
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{14.5pt}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead[C]{\textbf{QFT Problem Sheet 2 - Student: José Manuel Begines Sánchez}}
+
+\textbf{8. } In this problem we will work out explicitly the kinematical relations involved in the computation of decay and scattering observables with just two particles in the final state.
+
+Let
+\begin{equation*}
+    d\Pi_2 = (2\pi)^4\delta^{(4)}(p-p_1-p_2)\frac{d^3p_1}{(2\pi)^32E(\mathbf{p}_1)}\frac{d^3p_2}{(2\pi)^32E(\mathbf{p}_2)}
+\end{equation*}
+be the Lorentz invariant phase space for a two-particle final state, where $p_{1,2}$ are the four-momenta of the two final state particles; $m_{1,2}$ are their masses; and p is the total four-momentum of the two particles in the initial state.
+
+\begin{enumerate}[label=(\alph*), start = 1]
+    \item Using the identities
+        \begin{equation}
+            \frac{1}{2E(\mathbf{k})}\delta[k^0-E(\mathbf{k})] = \delta(k^2-m^2)\theta(k^0)
+        \end{equation}
+        \begin{equation}
+            \int \frac{d^3k}{(2\pi)^32E(\mathbf{k})} = \int \frac{d^4k}{(2\pi)^32E(\mathbf{k})}\delta(k^0-E),
+        \end{equation}
+        
+        where $\theta$ is Heaviside's step function, show that
+        \[
+            R_2(s) \equiv \int d\Pi_2 = \frac{1}{(2\pi)^2}\int\frac{d^3p_1}{2E(\mathbf{p}_1)}\delta[(p-p_1)^2-m_2^2]\theta(p^0-p_1^0)
+        \]
+
+        N.B.: check explicitly that, as indicated, the integral does only depend on the Mandelstam variable $s=p^2$
+\end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (a)}
+
+Firstly we can use the second identity so we can rewrite $R_2$ as:
+\[
+    \begin{aligned}
+        R_2(s) &= \int \frac{d^3p_1}{(2\pi)^32E(\mathbf{p}_1)}\frac{d^3p_2}{(2\pi)^32E(\mathbf{p}_2)} (2\pi)^4\delta^{(4)}(p-p_1-p_2) \\
+               &= \int \frac{d^3p_1}{(2\pi)^32E(\mathbf{p}_1)}\frac{d^4p_2}{(2\pi)^32E(\mathbf{p}_2)} (2\pi)^4\delta^{(4)}(p-p_1-p_2) \delta[p_2^0 - E(\mathbf{p}_2)] \\
+               &= \int \frac{d^3p_1}{(2\pi)^64E(\mathbf{p}_1)E(\mathbf{p}-\mathbf{p}_1)} (2\pi)^4 \delta[(p-p_1)^0 - E(\mathbf{p}-\mathbf{p}_1)]
+    \end{aligned}
+\]
+
+And then, we can use the first identity to rewrite it as:
+\[
+    \begin{aligned}
+        R_2(s) &= \int  \frac{d^3p_1}{(2\pi)^64E(\mathbf{p}_1)E(\mathbf{p}-\mathbf{p}_1)} (2\pi)^4 \delta[(p-p_1)^0 - E(\mathbf{p}-\mathbf{p}_1)] \\
+               &= \int  \frac{d^3p_1}{(2\pi)^22E(\mathbf{p}_1)} \delta[(p-p_1)^2 - m_2^2]\theta(p^0-p_1^0)
+    \end{aligned}
+\]
+where we have used $m_2$ as the mass of this first identity because in this integral $\mathbf{p}-\mathbf{p}_1 = \mathbf{p}_2$
+
+\qedwhite
+
+\color{black}
+
+\begin{enumerate}[label=(\alph*), start = 2]
+    \item Show that in the center-of-momentum frame, where
+        \[
+            p = \left(\sqrt{s},\mathbf{0}\right) ~~~ , ~~~ p_1 = \left(E_1,\mathbf{p}_{cm}\right) ~~~ , ~~~ p_2 = (E_2, -\mathbf{p}_{cm})
+        \]
+        the relations hold
+        \[
+            E_1 = \frac{s + m_1^2 - m_2^2}{2\sqrt{s}}, ~~~ E_2 = \frac{s - m_1^2 + m_2^2}{2\sqrt{s}}
+        \]
+        \[
+            \left|\mathbf{p}_{cm}\right|=\frac{1}{2\sqrt{s}}\lambda^{1/2}(s,m_1^2,m_2^2)
+        \]
+        with
+        \[
+            \lambda(a,b,c) = a^2 + b^2 + c^2 - 2ab - 2ac - 2bc.
+        \]
+\end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (b)}
+
+Firstly, we should consider this identities:
+\[
+    p_2^2 = m_2^2 ~~,~~ p_1^2 = m_1^2 ~~;~~ p = p_1 + p_2 \Longrightarrow E_1= \sqrt{s} - E_2
+\]
+With, them we can consider:
+\[
+    \begin{aligned}
+        s = p^2 &= (p_1+p_2)^2 = p_1^2 + p_2^2 + 2p_1^\mu p_{2\mu}= m_1^2 + m_2^2 + 2(E_1E_2+|p_{cm}|^2) \\
+                &= m_1^2 - m_2^2 + 2(m_2^2 + |p_{cm}|^2) + 2(\sqrt{s} - E_2)E_2 = m_1^2 - m_2^2 + 2\sqrt{s}E_2
+    \end{aligned}
+\]
+Then, reordering we obtain:
+\[
+    E_2 = \frac{s-m_1^2+m_2^2}{2\sqrt{s}} \Longrightarrow E_1 = \sqrt{s} - E_2 = \frac{s+m_1^2-m_2^2}{2\sqrt{s}}
+\]
+
+Lastly, if we now compute the norm of $p_1$ then:
+\[
+    \begin{aligned}
+        p_2^2 &= E_2^2 - |\mathbf{p}_{cm}|^2 = \frac{1}{4s}\left(s^2 - m_1^2s + m_2^2s - m_1^2s + m_1^4 - m_1^2m_2^2 + sm_2^2 - m_1^2m_2^2 + m_2^4\right) - |\mathbf{p}_{cm}|^2 \\
+              &= m_2^2 \Longrightarrow |\mathbf{p}_{cm}|^2 = \frac{1}{4s}\left(s^2 + m_1^4 + m_2^4 - 2sm_1^2 - 2sm_2^2 - 2m_1^2m_2^2\right) = \frac{1}{4s}\lambda(s,m_1^2,m_2^2)
+    \end{aligned}
+\]
+
+\qedwhite
+
+\color{black}
+
+\begin{enumerate}[label=(\alph*), start = 3]
+    \item Using the above relations, plus the decomposition of $d^3p_1$ into modulus and solid angle parts,
+        \[
+            d^3p_1 = \left|\mathbf{p}_{cm}\right|^2d\left|\mathbf{p}_{cm}\right|d\Omega,
+        \]
+        show that one can write $R_2$ in the compact form
+        \[
+            R_2(s) = \frac{\lambda^{1/2}(s,m_1^2,m_2^2)}{32\pi^2s}\int d\Omega.
+        \]
+\end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (c)}
+
+Let's consider first
+\[
+    \begin{aligned}
+        R_2(s) &= \int  \frac{d^3p}{(2\pi)^22E(\mathbf{p}_1)} \delta[(p-p_1)^2 - m_2^2]\theta(p^0-p_1^0) \\
+               &= \int  \frac{d^3p}{(2\pi)^22E(\mathbf{p}_1)} \delta[(s + m_1^2 -2p^\mu p_{1\mu} - m_2^2]\theta(p^0-p_1^0)
+    \end{aligned}
+\]
+If we now work in the centre of mass coordinate system
+\[
+    \begin{aligned}
+        R_2(s) &= \int  \frac{d^3p_{cm}}{(2\pi)^22E(\mathbf{p}_{cm})} \delta[s + m_1^2 -2\sqrt{s}E(\mathbf{p}_{cm}) - m_2^2]\theta(\sqrt{s}-E(\mathbf{p}_{cm})) \\
+               &= \int \frac{|\mathbf{p}_{cm}|^2d|\mathbf{p}_{cm}|d\Omega}{(2\pi)^24\sqrt{s}E(\mathbf{p}_{cm})} \delta\left[\frac{s + m_1^2 - m_2^2}{2\sqrt{s}} - E(\mathbf{p}_{cm})\right]\theta(\sqrt{s}-E(\mathbf{p}_{cm})) \\ 
+    \end{aligned}
+\]
+Where we have considered that $\delta(\alpha x) = \frac{1}{|\alpha|}\delta(x)$. 
+
+If we now consider that $\delta(f(x)) = \sum \frac{1}{|f'(x_n)|} \delta(x-x_n)~~:~~ f(x_n) = 0 ~~~~\&~~~~ f'(x_n)\neq 0$ and that $E(\mathbf{p}_{cm})^2 = m_1^2 + |\mathbf{p}_{cm}|^2~~\Longrightarrow E'(\mathbf{p}_{cm})=\frac{|\mathbf{p}_{cm}|}{E(\mathbf{p}_{cm})}$, then we can obtain:
+\[
+    \begin{aligned}
+        R_2(s) &=  \int \frac{|\mathbf{p}_{cm}|^2d|\mathbf{p}_{cm}|d\Omega}{(2\pi)^24\sqrt{s}E(\mathbf{p}_{cm})} \delta\left[\frac{s + m_1^2 - m_2^2}{2\sqrt{s}} - E(\mathbf{p}_{cm})\right]\theta(\sqrt{s}-E(\mathbf{p}_{cm})) \\ 
+               &= \int \frac{|\mathbf{p}_{cm}|^2d|\mathbf{p}_{cm}|d\Omega}{(2\pi)^24\sqrt{s}E(\mathbf{p}_{cm})E'(\mathbf{p}_{cm})} \delta\left[\left|\mathbf{p}_{cm}\right|-\frac{1}{2\sqrt{s}}\lambda^{1/2}(s,m_1^2,m_2^2)\right]\theta(\sqrt{s}-E(\mathbf{p}_{cm})) \\ 
+               &= \int \frac{|\mathbf{p}_{cm}|d|\mathbf{p}_{cm}|d\Omega}{(2\pi)^24\sqrt{s}} \delta\left[\left|\mathbf{p}_{cm}\right|-\frac{1}{2\sqrt{s}}\lambda^{1/2}(s,m_1^2,m_2^2)\right]\theta(\sqrt{s}-E(\mathbf{p}_{cm})) \\
+    \end{aligned}
+\]
+\[
+    = \frac{\lambda^{1/2}(s,m_1^2,m_2^2)}{32\pi^2 s}\int d\Omega
+\]
+\qedwhite
+
+\color{black}
+
+\begin{enumerate}[label=(\alph*), start = 4]
+    \item Use the above result to compute the differential cross section $d\sigma/d\Omega$ for nucleon-nucleon scattering at tree level in the scalar Yukawa model. Discuss the dependence of the result on the collision energy $\sqrt{s}$ and on the scattering angle.
+\end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (d)}
+
+Through out this whole exercise we have dealt with the form of $R_2(s)$, however this results we have obtained would be the same for any integral of the form of:
+\[
+    \int d\Pi_2 f(p_1,p_2)
+\]
+Considering that we apply the changes implied by the dirac deltas to this $f$ function. Then, if we now consider the cross section of the nucleon-nucleon scattering at tree level in the scalar Yukawa model:
+\[
+    \sigma_{NN\rightarrow NN} = \int \frac{g^4}{4E(\mathbf{p}_1)E(\mathbf{p}_2)|\frac{\mathbf{p}_1}{p_1^0}-\frac{\mathbf{p}_2}{p_2^0}|}\left\{\frac{1}{(p_1-p_1')^2-m^2}+\frac{1}{(p_1-p_2')^2-m^2}\right\}^2d\Pi_2,
+\]
+
+we can now express this in terms of the last expression of $R_2(s)$ (We will be working in the centre of mass coordinate system):
+\[
+        \sigma_{NN\rightarrow NN} = \frac{g^4}{8\sqrt{|\mathbf{p}_{cm}|^2 + m^2}|\mathbf{p}_{cm}|}\frac{\lambda^{1/2}(s,m^2,m^2)}{32\pi^2 s}\int \left\{\frac{1}{m^2-2p_1^\mu{p_1'}_\mu}+\frac{1}{m^2-2p_1^\mu{p_2'}_\mu}\right\}^2 d\Omega 
+\]
+If we now consider $p_1^\mu{p_1'}_\mu$ and analogously $p_1^\mu{p_2'}_\mu$:
+\[
+    p_1^\mu{p_1'}_\mu = \frac{s}{4} - |\mathbf{p}_{cm}|^2\cos(\theta)
+\]
+\[
+    p_1^\mu{p_2'}_\mu = \frac{s}{4} + |\mathbf{p}_{cm}|^2\cos(\theta)
+\]
+Where $\theta$ is the angle between the $\mathbf{p}_1$ and $\mathbf{p}_1'$. If we now consider the value of $\lambda(s,m^2,m^2)$:
+\[
+    \lambda(s,m^2,m^2) = \left(s^2 + m^4 + m^4 - 2sm^2 - 2sm^2 - 2m^4\right) = s^2 -4sm^2 = 4s|\mathbf{p}_{cm}|^2
+\]
+We can compute the differential cross section:
+\[
+    \frac{d\sigma}{d\Omega}= \frac{g^4}{2\lambda^{1/2}(s,m^2,m^2)}\frac{\lambda^{1/2}(s,m^2,m^2)}{32\pi^2 s}\left\{\frac{1}{m^2-\frac{s}{2}+(\frac{s}{2}-2m^2)\cos(\theta)}+\frac{1}{m^2-\frac{s}{2}-(\frac{s}{2}-2m^2)\cos(\theta)}\right\}^2
+\]
+\[
+    =\frac{g^4}{64\pi^2 s}\left\{\frac{1}{m^2-\frac{s}{2}+(\frac{s}{2}-2m^2)\cos(\theta)}+\frac{1}{m^2-\frac{s}{2}-(\frac{s}{2}-2m^2)\cos(\theta)}\right\}^2
+\]
+
+We can see that this differential cross section has global square dependence with the inverse of the Energy of the collision, that is, the more energy the particle have the less probable their interaction will be (They are "going so fast" that they do not notice one another). On the other hand, if we consider the terms under brackets we can highlight two different things. Firstly, if we consider the case where $\frac{s}{2}= E^2 =2m^2$ then the scattering angle will have no effect in the differential cross section, that is the collision will be isotropic:
+\[
+    \frac{d\sigma}{d\Omega}= \frac{g^4}{16\pi^2m^4s}
+\]
+Secondly, if we look for a maximum and minimums respect to the scattering angle (in a case when $\frac{s}{2}= E^2 \neq 2m^2$) we can see that:
+\[
+    \frac{\partial\mathcal{M}}{\partial\theta} = \left(\frac{s}{2}-2m^2\right)\frac{\sin(\theta)}{\left[m^2-\frac{s}{2}+(\frac{s}{2}-2m^2)\cos(\theta)\right]^2}-\left(\frac{s}{2}-2m^2\right)\frac{\sin(\theta)}{\left[m^2-\frac{s}{2}-(\frac{s}{2}-2m^2)\cos(\theta)\right]^2}=0
+\]
+\[
+    \sin(\theta)\left\{1-\frac{\left[m^2-\frac{s}{2}+(\frac{s}{2}-2m^2)\cos(\theta)\right]^2}{\left[m^2-\frac{s}{2}-(\frac{s}{2}-2m^2)\cos(\theta)\right]^2}\right\} = 0
+\]
+
+Then there exists extremas in $\theta=0,\pi$ and $\theta$ solution to the equation:
+\[
+    \left|m^2-\frac{s}{2}+\left(\frac{s}{2}-2m^2\right)\cos(\theta)\right| = \left|m^2-\frac{s}{2}-\left(\frac{s}{2}-2m^2\right)\cos(\theta)\right|
+\]
+If both terms have the same sign, then $\theta=\pm \pi/2$ which is consistent with the premise of same sign in both sides. If we were to consider different signs in these terms then there would be no solution.
+
+\vspace{.25cm}
+
+Now, if we derive this expression a second we obtain that:
+\[
+    \frac{\partial^2\mathcal{M}}{\partial\theta^2} = 2\left(\frac{s}{2}-2m^2\right)^2\sin^2(\theta)\left\{\frac{1}{\left[m^2-\frac{s}{2}+(\frac{s}{2}-2m^2)\cos(\theta)\right]^3}+\frac{1}{\left[m^2-\frac{s}{2}-(\frac{s}{2}-2m^2)\cos(\theta)\right]^3}\right\} +
+\]
+\[
+    + \left(\frac{s}{2}-2m^2\right)\cos(\theta)\left\{\frac{1}{\left[m^2-\frac{s}{2}+(\frac{s}{2}-2m^2)\cos(\theta)\right]^2}-\frac{1}{\left[m^2-\frac{s}{2}-(\frac{s}{2}-2m^2)\cos(\theta)\right]^2}\right\}
+\]
+and, if we now evaluate in this expression the extremas, we obtain that $\theta = \pm \pi/2$ is a maxima (considering that $s>2m^2$ as the rest energy of the system if there were no momentum involved would be $2m$) and $\theta = 0, \pi$ is a minima. That is, the most probable case would be an orthogonal scattering and the least probable would be a parallel scattering.
+
+\color{black}
+
+\begin{enumerate}[label=(\alph*), start = 5]
+    \item Along the same lines, one can show that the expression for the decay rate of an unstable particle of mass m to a two-particle state has the form
+        \[
+            \Gamma = \frac{\left|\mathbf{p}_{cm}\right|}{8\pi m^2}\left|\mathcal{M}_{fi}\right|^2
+        \]
+        Use this formula to compute the rate for meson decay into nucleon-antinucleon at tree level in the scalar Yukawa model. Discuss the physics contained in the result.
+\end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (e)}
+
+If we consider the tree level in the scalar Yukawa model for a meson decay into nucleon-antinucleon we know that:
+\[
+    \Gamma = \frac{\left|\mathbf{p}_{cm}\right|}{8\pi m^2}g^2
+\]
+If we now consider the derivations of section (b):
+\[
+    \Gamma = \frac{\sqrt{s-4M^2}}{16\pi m^2}g^2 = \frac{\sqrt{m^2-4M^2}}{16\pi m^2}g^2 = \frac{\sqrt{1-\frac{4M^2}{m²}}}{16\pi}g^2
+\]
+Where $M^2$ is the mass of the nucleon (and the antinucleon) created by the decay. This expression makes total physical sense. In order for this kind of process to take place, the mass of the meson has to be greater than the sum of the masses of the pair nucleon-antinucleon (Energy conservation). It also shows that the greater the difference in mass, the greater this decay rate will be, which means the meson will be more unstable (It will have a smaller mean lifetime)
+
+\color{black}
+
+
+\textbf{9. } Work out the form of the (scalar) Yukawa potential for a generic number of space dimensions d. Discuss the ensuing physics, as well as the $m\rightarrow0$ limit (remember that in $d=3$ this yields the Coulomb potential).
+
+\vspace{0.25cm}
+
+[Hint 1: Work out the form of the scalar propagator and the Feynman rules for generic spacetime dimension, then repeat the argument for $d=3$ discussed in class.]
+
+\vspace{0.25cm}
+
+[Hint 2: The identity
+\begin{equation*}
+    \frac{1}{z} = \int_0^\infty d\eta e^{-z\eta}
+\end{equation*}
+might be useful to rewrite the integral involved in a more amenable form, such that the result can be expressed in terms of simple known functions.]
+
+\color{blue}
+
+\vspace{.25cm}
+
+\textbf{Solution}
+
+For this exercise we need to slightly tweak Feynman Rules to having d spacial dimensions. That is:
+\begin{enumerate}
+    \item Each vertex line will now add a factor of:
+        \[
+            (-ig)(2\pi)^{d+1} \delta^{(d+1)}\left(\sum_l q_l\right)
+        \]
+        with $q_l$ being the inwards momenta.
+    \item Each internal line will now add a "propagator factor" of:
+        \[
+            \int\frac{d^{d+1}k}{(2\pi)^{d+1}}\frac{i}{k^2-\mu^2+i\epsilon} ~~~ : ~~~ \epsilon \rightarrow 0
+        \]
+\end{enumerate}
+From this Feynman Rules, the scattering of two (scalar) nucleons at tree level will have a probability amplitude of:
+\[
+    \begin{aligned}
+        D_t &= \int d^{d+1}k \frac{i}{k^2-\mu^2+i\epsilon}(-ig)^2(2\pi)^{d+1}\delta^{(d+1)}\left(p_1-p'_1-k\right)\delta^{(d+1)}\left(p_2-p'_2+k\right)=\\
+            &= (-ig)^2(2\pi)^{d+1}\frac{i}{(p_1-p_1')^2-\mu^2}\delta^{(d+1)}(p_1 + p_2 - p'_1 - p'_2) \Rightarrow i\mathcal{M} = \frac{i(-ig)^2}{(p_1-p_1')^2-\mu^2}
+    \end{aligned}
+\]
+(We will just use the T channel, because we are gonna relate this QFT calculations with a non-relativistic QM calculation that differentiate particles)
+
+\vspace{.25cm}
+
+Now, we can relate this amplitude to the Bohr approximation:
+\[
+    \bra{p'}\hat{U}\ket{p} = -i\int d^dx U(x)e^{-i(\mathbf{p}-\mathbf{p}')\cdot \mathbf{x}} = \frac{1}{4M^2}i\mathcal{M} = i\frac{\lambda^2}{(\mathbf{p}_1-\mathbf{p}_1')^2+\mu^2} ~~~:~~~ \lambda=\frac{g}{2M}
+\]
+(This $4M^2$ factor comes from the relativistic normalization)
+
+\vspace{.25cm}
+
+If we now invert this expression with $\mathbf{k}=\mathbf{p_1}-\mathbf{p'_1}$ we obtain:
+\[
+    \begin{aligned}
+        \frac{U(x)}{-\lambda^2} &= \int \frac{d^dk}{(2\pi)^d}\frac{e^{i\mathbf{k}\cdot\mathbf{x}}}{\mathbf{k}^2+\mu^2} = \int \frac{d^dk}{(2\pi)^d} e^{i\mathbf{k}\cdot\mathbf{x}}\int d\alpha e^{-\alpha(\mathbf{k}^2+\mu^2)} = \int \frac{d\alpha}{(2\pi)^d}e^{-\alpha\mu^2}\int d^dk e^{-\alpha\mathbf{k}^2+i\mathbf{k}\cdot\mathbf{x}} \\
+                                &= \int \frac{d\alpha}{(2\pi)^d} e^{-\alpha\mu^2}\left(\frac{2\pi}{2\alpha}\right)^{d/2}e^{\frac{-r^2}{4\alpha}} = \int \frac{d\alpha}{(2\pi)^{d/2}} e^{-\alpha\mu^2}\frac{e^{\frac{-r^2}{4\alpha}}}{(2\alpha)^{d/2}} = \left\{\beta = \alpha\mu^2\right\} \\
+                                &= \frac{\mu^{d-2}}{(2\pi)^{d/2}}\int d\beta e^{-\beta}\frac{e^{-\frac{(r\mu)^2}{4\beta}}}{(2\beta)^{d/2}} = \frac{\mu^{d-2}}{(2\pi)^{d/2}} \left(\frac{1}{r\mu}\right)^{d/2-1}K_{\frac{d-2}{2}}(\mu r) = \frac{1}{(2\pi)^{d/2}} \left(\frac{\mu}{r}\right)^{\frac{d-2}{2}}K_{\frac{d-2}{2}}(\mu r)
+    \end{aligned}
+\]
+
+Where this $K_\nu$ function is the modified Bessel function of second kind of order $\nu$.
+
+\vspace{.25cm}
+
+If we fix $d=3$ considering that $K_{\frac{1}{2}}(\mu r) = \left(\frac{2\mu r}{\pi}\right)^{-1/2}e^{-\mu r}$, which allow us to recover the usual Yukawa potential:
+\[
+    U(r) = -\lambda^2 \frac{e^{-\mu r}}{4\pi r}
+\]
+A potential which turns into the Coulomb potential at the $m\rightarrow 0$ limit.
+
+If we consider the long range of this potential:
+\[
+    K_{\frac{d-2}{2}}(\mu r)\underset{r\rightarrow +\infty}{\longrightarrow}\sqrt{\frac{\pi}{2\mu r}}e^{-\mu r}
+\]
+
+Then this potential would turn into:
+\[
+    U(r)=-\lambda^2\frac{1}{2(2\pi)^{\frac{d-1}{2}}}\frac{\mu^{\frac{d-3}{2}}}{r^{\frac{d-1}{2}}}e^{-\mu r}
+\]
+Where we can see that this potential decays faster the more spatial dimensions we consider.
+
+Let's now see the $m\rightarrow 0$ limit of general $d$ spatial dimensions, considering that:
+\[
+    K_{\frac{d-2}{2}}(\mu r)\underset{m\rightarrow 0}{\longrightarrow} \frac{\Gamma\left(d/2-2\right)}{2}\left(\frac{\mu r}{2}\right)^{-\frac{d-2}{2}}
+\]
+Then, this potential would turn into:
+\[
+    U(r) = -\frac{\lambda^2\Gamma\left(d/2-1\right)}{(4\pi)^{d/2}}\frac{2}{r^{d-2}}
+\]
+It is straightforward to see that the more spatial dimensions we consider the more close range this potential will be.
+
+\qedwhite
+\end{document}

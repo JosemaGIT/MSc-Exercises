@@ -1,0 +1,260 @@
+\documentclass[12pt]{article}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\usepackage{hyphenat}
+
+\usepackage[a4paper]{geometry}
+\geometry{
+    left = 20mm,
+    top = 20mm,
+    right = 20mm,
+    bottom = 20mm
+}
+\usepackage{fancyhdr}
+
+\usepackage{enumitem}
+
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage{amssymb}
+\newcommand{\qedwhite}{\hfill \ensuremath{\Box}}
+\usepackage{tensor}
+
+\usepackage{xcolor}
+
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{14.5pt}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead[C]{\textbf{QFT Problem Sheet 1 - Student: José Manuel Begines Sánchez}}
+
+\textbf{8.} Given the Lagrangian for the electromagnetic field,
+
+\[ \mathcal{L} = - \frac{1}{4} F_{\mu\nu}F^{\mu\nu} \]
+
+with \( F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu \):
+
+\begin{enumerate}[label=(\alph*)]
+    \item Show that \(\mathcal{L}\) is invariant under the gauge transformations \[ A_\mu(x) \rightarrow A'_\mu(x) = A_\mu(x) + \partial_\mu \xi(x), \] where \(\xi(x)\) is some gauge function.
+\end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (a)}
+
+To proof the invariance of \( \mathcal{L} \) I can just shall it for \( F_{\mu\nu} \) (that is of \( \vec{E} \) and \( \vec{B} \)):
+
+\[
+    F'_{\mu\nu} = \partial_\mu A_\nu + \partial_\mu \partial_\nu \xi - \partial_\nu A_\mu + \partial_\nu \partial_\mu \xi = \partial_\mu A_\nu + \cancel{\partial_\mu \partial_\nu \xi} - \partial_\nu A_\mu +  \cancel{\partial_\mu \partial_\nu \xi} = F_{\mu\nu},
+\]
+
+so, consequently, \( \mathcal{L}' = \mathcal{L} \). $\qedwhite$
+
+\color{black}
+
+\begin{enumerate}[label=(\alph*), start = 2]
+    \item Compute the energy-momentum tensor, using Noether's theorem and translational invariance. Show that the resulting object is neither symmetric (\( T^{\mu\nu} \neq T^{\nu\mu} \)) nor gauge invariant.
+\end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (b)}
+
+If I consider a translational transformation of the type,
+
+\[ x^\mu \longrightarrow {x^\mu}' = x^\mu - \varepsilon \xi^\mu ~~~~ : ~~~~ \varepsilon << 1, \]
+
+such that \(\xi^\mu\) is an arbitrary constant 4-vector, I can expand the 4-potential and the Lagrangian to first order,
+
+\[ A'_\mu (x^\nu) = A_\mu (x^\nu + \xi^\nu) = A_\mu (x^\nu) + \varepsilon \xi^\rho \partial_\rho A_\mu (x^\nu) + O(\varepsilon^2) \]
+\[ \mathcal{L}' (x^\nu) = \mathcal{L} (x^\nu) + \varepsilon \xi^\rho \partial_\rho \mathcal{L} (x^\nu) + O(\varepsilon^2) \]
+
+So, if I now consider Noether's Theorem, I obtain the following conservation law:
+\begin{align*}
+    &\partial_\mu \left\{ \frac{\partial\mathcal{L}}{\partial \left( \partial_\mu A_\rho \right)} \xi^\nu \partial_\nu A_\rho - \xi^\mu\mathcal{L} \right\} = 0
+    \\ \Longrightarrow ~~ &\xi^\nu \partial_\mu \left\{ \frac{\partial\mathcal{L}}{\partial \left( \partial_\mu A_\rho \right)} \partial_\nu A_\rho - \delta^\mu_\nu \mathcal{L} \right\} = 0
+\end{align*}
+
+And, as \(\xi^\nu\) can be any 4-vector, I can choose 4 different linearly independent vectors, for example the members of the canonical basis, which gives us:
+
+\[ \partial_\mu \underbrace{ \left\{ \frac{\partial\mathcal{L}}{\partial \left( \partial_\mu A_\rho \right)} \partial_\nu A_\rho - \delta^\mu_\nu \mathcal{L}  \right\} }_{\tensor{T}{^\mu_\nu}}= 0 \]
+
+Where I obtained the conservation of the energy-momentum tensor.
+
+\vspace{0.25cm}
+
+This energy tensor will have the following form:
+\begin{align*}
+    \frac{ \partial \mathcal{L} }{ \partial \left( \partial_\mu A_\rho \right) } &= -\frac{ 1 }{ 4 } \frac{ \partial }{ \partial \left( \partial_\mu A_\rho \right) }\left\{ \eta^{\nu\alpha} \eta^{\mu\beta} \left[ \partial_\alpha A_\beta \partial_\nu A_\lambda + \partial_\beta A_\alpha \partial_\lambda A_\nu - \partial_\alpha A_\beta \partial_\lambda A_\nu - \partial_\beta A_\alpha \partial_\nu A_\lambda \right] \right\} = \\
+    &= -\frac{ 1 }{ 4 } \frac{ \partial }{ \partial \left( \partial_\mu A_\rho \right) }\left\{ \eta^{\nu\alpha} \eta^{\mu\beta} \left[ \delta^\mu_\alpha \delta^\rho_\beta \partial_\nu A_\lambda + \partial_\alpha A_\beta \delta^\mu_\nu \delta^\rho_\lambda + \delta^\mu_\beta \delta^\rho_\alpha \partial_\lambda A_\nu + \partial_\beta A_\alpha \delta^\mu_\lambda \delta^\rho_\nu \right.\right. \\
+    &~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ - \left.\left. \delta^\mu_\alpha \delta^\rho_\beta \partial_\lambda A_\nu - \partial_\alpha A_\beta \delta^\mu_\lambda \delta^\rho_\nu- \delta^\mu_\beta \delta^\rho_\alpha \partial_\nu A_\lambda - \partial_\beta A_\alpha \delta^\mu_\nu \delta^\rho_\nu \right]\right\} = \\
+    &= \partial^\rho A^\mu - \partial^\mu A^\rho = F^{\rho\mu}
+\end{align*}
+\[T^{\mu\nu} = F^{\rho\mu} \partial^\nu A_\rho - \eta^{\mu\nu} \mathcal{L} = \partial^\rho A^\mu \partial^\nu A_\rho - \partial^\mu A^\rho \partial^\nu A_\rho -\eta^{\mu\nu} \mathcal{L}\]
+
+\newpage
+If I now calculate \( T^{\nu\mu} \) I obtain that this Tensor is generally not symmetric:
+
+\[T^{\nu\mu} = \underbrace{\partial^\rho A^\nu \partial^\mu A_\rho}_{Undefined} - \underbrace{\partial^\nu A^\rho \partial^\mu A_\rho - \eta^{\nu\mu}\mathcal{L}}_{Symmetric}\]
+
+Additionally it can be seen that if this tensor is not a gauge invariant:
+
+\[ {T^{\mu\nu}}' = F^{\rho\mu} \partial^\nu A_\rho - \eta^{\mu\nu} \mathcal{L} + F^{\rho\mu} \partial^\nu \partial_\rho \xi(x) = T^{\mu\nu} + F^{\rho\mu} \partial^\nu \partial_\rho \xi(x)\]
+
+where I have considered what I proved in Section (a). \qedwhite
+
+\color{black}
+
+\begin{enumerate}[label=(\alph*), start = 3]
+    \item Consider a new tensor given by \[ \Theta^{\mu\nu} = T^{\mu\nu} - F^{\rho\mu} \partial_\rho A^\nu. \] Show that this tensor also contains four conserved currents for the energy and momemtum associated to the filed, and that it is furthermore symmetric, gauge invariant and traceless.
+\end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (c)}
+
+Firstly let's proof that that this tensor represent four conserved 4-currents:
+
+\[ \partial_\mu \Theta^{\mu\nu} = \cancel{ \partial_\mu T^{\mu\nu} } - \underbrace{ \cancel{ \partial_\mu \left(F^{\rho\mu}\right) } }_{E.L~Eq.} \partial_\rho A^\nu - \underbrace{ \cancel{ F^{\rho\mu} \partial_\mu \partial_\rho A^\nu } }_{Antisymmetry} = 0 \]
+
+The second term cancels because of Euler-Lagrange's equations. Additionally, to cancel the last term I considered:
+
+\[
+    F^{\mu\nu} = \frac{ F^{\mu\nu} - F^{\nu\mu} }{2} \Longrightarrow F^{\mu\nu}\partial_\nu\partial_\mu = \frac{1}{2} \left( F^{\mu\nu} \partial_\mu \partial_\nu - F^{\nu\mu} \partial_\nu \partial_\mu \right) = 0
+\]
+
+Additionally, it can be seen that this tensor is fully symmetric:
+\begin{align*}
+    \Theta^{\mu\nu} &= F^{\rho\mu} \left( \partial^\nu A_\rho - \partial_\rho A^\nu \right) - \eta^{\mu\nu} \mathcal{L} = F^{\rho\mu} \tensor{F}{^\nu_\rho} - \eta^{\mu\nu} \mathcal{L} = \\
+                    &= \left( \partial^\rho A^\mu \partial^\nu A_\rho - \partial^\mu A^\rho \partial^\nu A_\rho - \partial^\rho A^\mu \partial_\rho A^\nu + \partial^\mu A^\rho \partial_\rho A^\nu \right) - \eta^{\mu\nu} \mathcal{L}
+\end{align*}
+
+The last term is trivially symmetric (the Minkowski metric), while if I calculate the transpose of the term between parenthesis, it is clear that \( \Theta^{\mu\nu} \) is indeed symmetric:
+
+\[
+( \underbrace{ \partial^\rho A^\nu \partial^\mu A_\rho }_{ \partial^\mu A^\rho \partial_\rho A^\nu } - \underbrace{ \partial^\nu A^\rho \partial^\mu A_\rho }_{ \partial^\mu A^\rho \partial^\nu A_\rho } - \underbrace{ \partial^\rho A^\nu \partial_\rho A^\mu }_{ \partial^\rho A^\mu \partial_\rho A^\nu } + \underbrace{ \partial^\nu A^\rho \partial_\rho A^\mu }_{ \partial^\rho A^\mu \partial^\nu A_\rho } )
+\]
+
+As I indicated previously, \( \Theta^{\mu\nu} \) can be expressed like
+\[
+    \Theta^{\mu\nu} = F^{\rho\mu} \tensor{F}{^\nu_\rho} - \eta^{\mu\nu} \mathcal{L},
+\]
+
+which makes clear that this tensor is gauge invariant considering what I proved at Section (a).
+
+Lastly, let's calculate the trace of this tensor:
+\[
+    \tensor{ \Theta }{^\mu_\mu} = F^{\rho\mu}F_{\mu\rho} - 4 \mathcal{L} = - F^{\rho\mu}F_{\rho\mu} + F^{\alpha\beta}F_{\alpha\beta} = 0
+\]
+
+which proofs that this tensor is traceless. \qedwhite
+\color{black}
+
+\newpage
+\textbf{9.} Show explicitly that the theory
+\[
+    \mathcal{L} = \frac{1}{2} \partial_\mu \phi_a \partial^\mu \phi_a - \frac{1}{2} m^2 \phi_a^2
+\]
+
+(sum over a implicit) for a triplet of real fields \( \phi_a \) (a = 1,2,3) has an internal SO(3) symmetry - i.e., that \( \mathcal{L} \) is invariant under
+\[
+    \phi_a(x) \longrightarrow \phi_a'(x) = R_{ab} \phi_b(x) ~~~:~~~ R \in SO(3),
+\]
+
+and compute the associated conserved currents and charges.
+
+\color{blue}
+
+\textbf{Solution}
+
+\vspace{0.25cm}
+
+\fbox{\parbox{\textwidth - 7pt}{\underline{\textit{Note:}} During this proof, I am going to abuse the Einstein summation convention and say that any Latin letter that appears more than once in an expression will imply summing over said index, \nohyphens{independently} of its location as super index or subindex.}}
+
+\vspace{0.25cm}
+
+So, considering this, I can express that as \( R \in SO(3) \) as:
+\[
+    |R| = 1 ~~ \& ~~ R_{ij} {R^T}_{jk} = R_{ji} {R^T}_{kj} = R_{ij} R_{kj} = R_{ji} R_{jk} = \delta_{ik}
+\]
+
+Now if I apply the transformation to our triplet of real fields, I obtain:
+\begin{align*}
+    \mathcal{L}' &= \frac{1}{2} R_{ab} \partial_\mu \phi_b R_{ac} \partial^\mu \phi_c - \frac{1}{2} m^2 R_{ab} \phi_b R_{ac} \phi_c = \left(\frac{1}{2} \partial_\mu \phi_b \partial^\mu \phi_c - \frac{1}{2} m^2 \phi_b \phi_c \right) R_{ab} R_{ac}\\
+                 &= \left(\frac{1}{2} \partial_\mu \phi_b \partial^\mu \phi_c - \frac{1}{2} m^2 \phi_b \phi_c \right) \delta_{bc} = \frac{1}{2} \partial_\mu \phi_b \partial^\mu \phi_b - \frac{1}{2} m^2 \phi_b^2 = \mathcal{L},
+\end{align*}
+
+which proves that this theory has an internal SO(3) symmetry. Now, lets use Noether's Theorem to obtain the associated conserved currents and charges. Firstly, lets consider an infinitesimal rotation. That is:
+\[
+    R_{ij} = \delta_{ij} + \varepsilon r_{ij} ~~~~:~~~~ \varepsilon << 1
+\]
+
+As \( R \in SO(3) \), this \(r_{ij}\) must be constrained. Indeed:
+\[
+    \delta_{ik} := R_{ij} R_{kj} = \delta_{ij} \delta{kj} + \varepsilon \left(\delta_{ij} r_{kj} + r_{ij} \delta_{kj} \right) + O(\varepsilon^2) = \delta_{ik} + \varepsilon \left(r_{ki} + r_{ik} \right) + O(\varepsilon^2),
+\]
+which tells us that this matrices must be antisymmetric to first order in \( \varepsilon \).
+
+\vspace{0.25cm}
+
+Now, I can apply Noether's Theorem to this symmetry:
+
+\[
+    \frac{ \partial \mathcal{L} }{ \partial \left( \partial^\rho \phi_a \right)} = \frac{1}{2} \frac{ \partial }{ \partial \left( \partial^\rho \phi_a \right)}\left[ \eta^{\mu\nu} \partial_\mu \phi_b \partial_\nu \phi_b \right] = \frac{1}{2} \eta^{\mu\nu} \left( \delta^\rho_\mu \delta_{ab} \partial_\nu \phi_b + \partial_\mu \phi_b \delta^\rho_\nu \delta_{ab}\phi_b\right) = \partial^\rho \phi_a
+\]
+\[
+    0 := \partial_\rho\left\{\frac{ \partial \mathcal{L} }{ \partial \left( \partial^\rho \phi_a \right)} \delta \phi_a \right\} = \partial_\rho \left\{ \partial^\rho \phi_a r_{ab} \phi_b \right\}
+\]
+
+Considering now that \( r_{ab} \) must be antisymmetric, I can consider 3 different linearly independent cases:
+\[
+    r_{ab} =    \left(  
+                        \begin{matrix}
+                            0 & -1 & 0 \\
+                            1 &  0 & 0 \\
+                            0 &  0 & 0
+                        \end{matrix} 
+                \right)
+    \Rightarrow \phi_1\partial^\rho \phi_2 - \phi_2 \partial^\rho \phi_1 
+\]
+\[
+    r_{ab} =    \left(  
+                        \begin{matrix}
+                            0 & 0 & -1 \\
+                            0 & 0 &  0 \\
+                            1 & 0 &  0
+                        \end{matrix} 
+                \right)
+    \Rightarrow \phi_1\partial^\rho \phi_3 - \phi_3 \partial^\rho \phi_1 
+\]
+\[
+    r_{ab} =    \left(  
+                        \begin{matrix}
+                            0 & 0 &  0 \\
+                            0 & 0 & -1 \\
+                            0 & 1 &  0
+                        \end{matrix} 
+                \right)
+    \Rightarrow \phi_2\partial^\rho \phi_3 - \phi_3 \partial^\rho \phi_2 
+\]
+
+Which can be summed up as:
+\[
+    j^\rho_a = \varepsilon_{abc} \phi_b \partial^\rho \phi_c ~~~:~~~ \varepsilon_{abc} \equiv \text{Levi-Civita Symbol}
+\]
+
+\newpage
+From where I can derive the thee charges its three currents associated to this symmetry:
+\begin{align*}
+    Q_a &= \int_{S\subset\mathbb{R}^3} d^3 x ~ \varepsilon_{abc} \phi_b \dot{\phi}_c,\\
+    \dot{Q}_a(t) = I_a &= \oint_{\partial S\subset\mathbb{R}^2} d\vec{A} \cdot \varepsilon_{abc} \phi_b \vec{\nabla} \phi_c,
+\end{align*}
+
+where, of course, if I chose \(S\) to be the entire space then this current would banish.
+
+\qedwhite
+\end{document}
