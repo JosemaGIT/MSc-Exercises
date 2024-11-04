@@ -373,5 +373,32 @@ Considering the results obtained in section (c), this result is immediate. Indee
 \color{black}
 
 \textbf{10.} Let $\psi^{(c)} = C\psi^*$ be the charge conjugate of the spin $1/2$ Dirac field $\psi$, where $C$ is the charge conjugation matrix.
+\begin{enumerate}[label=(\alph*), start = 1]
+    \item Prove that the combinations $\bar{\psi^{(c)}}\psi$ and $\bar{\psi}\psi^{(c)}$ are lorentz invariant. These are called \textbf{Majorana mass terms}, as opposed to the \textbf{Dirac mass term} $\bar{\psi}\psi$.
+\end{enumerate}
 
+\color{blue}
+
+\textbf{Solution (a)}
+
+Lets first consider the properties of the charge conjugation matrix:
+\[
+    C^\dagger C = \mathbb{1} ~~~~;~~~~ C^\dagger \gamma^\mu C = -(\gamma^\mu)^* \Longrightarrow S[\Lambda]^* = -C^\dagger S[\Lambda] C
+\]
+Then, we can see how $\psi^{(c)}$ and $\bar{\psi^{(c)}}$, change under Lorentz transformations:
+\[
+    \psi^{(c)}=C\psi^* \longrightarrow  C S[\Lambda]^*\psi^* = C C^\dagger S[\Lambda] C\psi^* = S[\Lambda]C\psi^*= S[\Lambda]\psi^{(c)}
+\]
+\[
+    \Longrightarrow \bar{\psi^{(c)}} \longrightarrow {\psi^{(c)}}^\dagger C^\dagger S[]\gamma^0
+\]
+
+\color{black}
+
+\begin{enumerate}[label=(\alph*), start = 2]
+    \item Rewrite $\bar{\psi^{(c)}}\psi$ and $\bar{\psi}\psi^{(c)}$ in terms of chiral (Weyl) spinors. Discuss the key physical differences between Majorana and Dirac mass terms.
+\end{enumerate}
+\begin{enumerate}[label=(\alph*), start = 3]
+    \item Consider the expansion of a Majorana spinor, that satisfies the condition $\psi^{(c)} = \psi$, in normal modes. Discuss the physical interpretation of the result.
+\end{enumerate}
 \end{document}
