@@ -33,7 +33,7 @@
 \begin{document}
 
 \pagestyle{fancy}
-\fancyhead[C]{\textbf{QFT Problem Sheet 2 - Student: José Manuel Begines Sánchez}}
+\fancyhead[C]{\textbf{QFT Problem Sheet 4 - Student: José Manuel Begines Sánchez}}
 
 \textbf{10.} Consider a positive frequency solution of the Dirac equation with $\mathbf{p} = \mathbf{0}$,
 \[
@@ -186,7 +186,7 @@ which are directly related (due to the block structure of the rotation matrix) t
             u(\mathbf{p}) = 
             \begin{pmatrix}
                 \sqrt{p\cdot \sigma}\begin{pmatrix}1 \\ 0\end{pmatrix} \\
-                \sqrt{p\cdot \bar{\sigma}}\begin{pmatrix}1 \\ 0\end{pmatrix}
+                \sqrt{p\cdot \overline{\sigma}}\begin{pmatrix}1 \\ 0\end{pmatrix}
             \end{pmatrix} = 
             \begin{pmatrix}
                 \sqrt{E-p^3}\begin{pmatrix}1 \\ 0\end{pmatrix} \\
@@ -197,7 +197,7 @@ which are directly related (due to the block structure of the rotation matrix) t
             u(\mathbf{p}) = 
                 \begin{pmatrix}
                     \sqrt{p\cdot \sigma}\begin{pmatrix}0 \\ 1\end{pmatrix} \\
-                    \sqrt{p\cdot \bar{\sigma}}\begin{pmatrix}0 \\ 1\end{pmatrix}
+                    \sqrt{p\cdot \overline{\sigma}}\begin{pmatrix}0 \\ 1\end{pmatrix}
                 \end{pmatrix} = 
                 \begin{pmatrix}
                     \sqrt{E+p^3}\begin{pmatrix}0 \\ 1\end{pmatrix} \\
@@ -212,7 +212,7 @@ which are directly related (due to the block structure of the rotation matrix) t
 
 If we consider the boost matrix in the $x^3$, in the spinor representation we get that, considering that the parameter for  this boost must be $\Omega_{03}=-\Omega_{30}=\zeta$, and that $S^{03}= \frac{1}{2}\gamma^0\gamma^3$:
 \[
-    S[\Lambda]_{boost}=\exp{\left[\frac{1}{2}p^3/E
+    S[\Lambda]_{boost}=\exp{\left[\frac{\zeta}{2}
     \begin{pmatrix}
         -\sigma_3 & 0 \\
         0 & \sigma_3
@@ -332,13 +332,13 @@ S[\Lambda]_{boost} u(\mathbf{p})^{\downarrow} = \begin{pmatrix} \sqrt{E+p^3} \\
 
 \color{black}
 
-\begin{enumerate}[label=(\alph*), start = 1]
+\begin{enumerate}[label=(\alph*), start = 4]
     \item Show that the boosted solutions have a well-defined massless limit $m\rightarrow 0$ (where $E=p^3$), and that
         \[
             u(\mathbf{p}) = 
                 \begin{pmatrix}
                     \sqrt{p\cdot \sigma}\begin{pmatrix}1 \\ 0\end{pmatrix} \\
-                    \sqrt{p\cdot \bar{\sigma}}\begin{pmatrix}1 \\ 0\end{pmatrix}
+                    \sqrt{p\cdot \overline{\sigma}}\begin{pmatrix}1 \\ 0\end{pmatrix}
                     \end{pmatrix} \rightarrow \sqrt{2E}\begin{pmatrix}
                     0\\
                     0\\
@@ -350,7 +350,7 @@ S[\Lambda]_{boost} u(\mathbf{p})^{\downarrow} = \begin{pmatrix} \sqrt{E+p^3} \\
             u(\mathbf{p}) = 
                 \begin{pmatrix}
                     \sqrt{p\cdot \sigma}\begin{pmatrix}0 \\ 1\end{pmatrix} \\
-                    \sqrt{p\cdot \bar{\sigma}}\begin{pmatrix}0 \\ 1\end{pmatrix}
+                    \sqrt{p\cdot \overline{\sigma}}\begin{pmatrix}0 \\ 1\end{pmatrix}
                     \end{pmatrix} \rightarrow \sqrt{2E}\begin{pmatrix}
                     0\\
                     1\\
@@ -372,9 +372,9 @@ Considering the results obtained in section (c), this result is immediate. Indee
 
 \color{black}
 
-\textbf{10.} Let $\psi^{(c)} = C\psi^*$ be the charge conjugate of the spin $1/2$ Dirac field $\psi$, where $C$ is the charge conjugation matrix.
+\textbf{11.} Let $\psi^{(c)} = C\psi^*$ be the charge conjugate of the spin $1/2$ Dirac field $\psi$, where $C$ is the charge conjugation matrix.
 \begin{enumerate}[label=(\alph*), start = 1]
-    \item Prove that the combinations $\bar{\psi^{(c)}}\psi$ and $\bar{\psi}\psi^{(c)}$ are lorentz invariant. These are called \textbf{Majorana mass terms}, as opposed to the \textbf{Dirac mass term} $\bar{\psi}\psi$.
+    \item Prove that the combinations $\overline{\psi^{(c)}}\psi$ and $\overline{\psi}\psi^{(c)}$ are lorentz invariant. These are called \textbf{Majorana mass terms}, as opposed to the \textbf{Dirac mass term} $\overline{\psi}\psi$.
 \end{enumerate}
 
 \color{blue}
@@ -385,20 +385,145 @@ Lets first consider the properties of the charge conjugation matrix:
 \[
     C^\dagger C = \mathbb{1} ~~~~;~~~~ C^\dagger \gamma^\mu C = -(\gamma^\mu)^* \Longrightarrow S[\Lambda]^* = -C^\dagger S[\Lambda] C
 \]
-Then, we can see how $\psi^{(c)}$ and $\bar{\psi^{(c)}}$, change under Lorentz transformations:
+Then, we can see how $\psi^{(c)}$ and $\overline{\psi^{(c)}}$, change under Lorentz transformations:
 \[
     \psi^{(c)}=C\psi^* \longrightarrow  C S[\Lambda]^*\psi^* = C C^\dagger S[\Lambda] C\psi^* = S[\Lambda]C\psi^*= S[\Lambda]\psi^{(c)}
 \]
 \[
-    \Longrightarrow \bar{\psi^{(c)}} \longrightarrow {\psi^{(c)}}^\dagger C^\dagger S[]\gamma^0
+    \Longrightarrow \overline{\psi^{(c)}}={\psi^{(c)}}^\dagger\gamma^0 \longrightarrow {\psi^{(c)}}^\dagger S[\Lambda]^\dagger\gamma^0 = {\psi^{(c)}}^\dagger S[\Lambda]^\dagger\gamma^0 = {\psi^{(c)}}^\dagger \gamma^0 S[\Lambda]^{-1} \gamma^0\gamma^0 = \overline{\psi^{(c)}} S[\Lambda]^{-1}
 \]
+
+Considering this, and that we know that $\psi$ and $\overline{\psi}$ changes the same way under Lorentz transformations. That is:
+\[
+    \psi \longrightarrow S[\Lambda]\psi
+\]
+\[
+    \overline{\psi} \longrightarrow \overline{\psi} S[\Lambda]^{-1}
+\]
+Then, evidently the Mejorana mass terms are Lorentz Invariant.
 
 \color{black}
 
 \begin{enumerate}[label=(\alph*), start = 2]
-    \item Rewrite $\bar{\psi^{(c)}}\psi$ and $\bar{\psi}\psi^{(c)}$ in terms of chiral (Weyl) spinors. Discuss the key physical differences between Majorana and Dirac mass terms.
+    \item Rewrite $\overline{\psi^{(c)}}\psi$ and $\overline{\psi}\psi^{(c)}$ in terms of chiral (Weyl) spinors. Discuss the key physical differences between Majorana and Dirac mass terms.
 \end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (b)}
+
+Let's first decompose a Spinor in its Weyl components. That is:
+\[
+    \psi = \psi_+ + \psi_- ~~~:~~~ \psi_\pm = P_\pm \psi ~~~:~~~ P_\pm = \frac{1}{2}(1\pm\gamma_5) ~~~~:~~~~ \gamma_5 = -i\gamma^0\gamma^1\gamma^2\gamma^3
+\]
+Then, if we consider one of the Majorana mass terms we get:
+\[
+    \overline{\psi}\psi^{(c)} = \overline{\psi}_+\psi^{(c)}_+ + \overline{\psi}_-\psi^{(c)}_- + \overline{\psi}_-\psi^{(c)}_+ +\overline{\psi}_+\psi^{(c)}_-
+\]
+Let's compute the third term (considering that the projectors are hermitian):
+\[
+    \frac{1}{4}\psi^\dagger(\mathbb{1}+i\gamma^0\gamma^1\gamma^2\gamma^3)\gamma^0C(\mathbb{1}-i\gamma^0\gamma^1\gamma^2\gamma^3)^* \psi^* = 
+\]
+\[
+    \frac{1}{4}\psi^\dagger(\mathbb{1}+i\gamma^0\gamma^1\gamma^2\gamma^3)\gamma^0C(\mathbb{1}+i(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*) \psi^* =
+\]
+\[
+    \frac{1}{4}\left[\gamma^0C+i\gamma^0\gamma^1\gamma^2\gamma^3\gamma^0C+i\gamma^0C(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*-\gamma^0\gamma^1\gamma^2\gamma^3\gamma^0C(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*\right] = 
+\]
+\[
+    \left[\text{Commutating, and considering $\gamma^\mu$ properties}\right]
+\]
+\[
+    = \frac{1}{4}\left[\gamma^0C-\cancel{i\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3}C+\cancel{i\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3C}-\gamma^0\gamma^1\gamma^2\gamma^3\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3C\right]
+    = \frac{1}{4}\left[\gamma^0C -\gamma^0C\right] = 0
+\]
+
+If we now compute the fourth term:
+\[
+    \frac{1}{4}\psi^\dagger(\mathbb{1}-i\gamma^0\gamma^1\gamma^2\gamma^3)\gamma^0C(\mathbb{1}+i\gamma^0\gamma^1\gamma^2\gamma^3)^* \psi^* = 
+\]
+\[
+    \frac{1}{4}\psi^\dagger(\mathbb{1}-i\gamma^0\gamma^1\gamma^2\gamma^3)\gamma^0C(\mathbb{1}-i(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*) \psi^* =
+\]
+\[
+    \frac{1}{4}\left[\gamma^0C-i\gamma^0\gamma^1\gamma^2\gamma^3\gamma^0C-i\gamma^0C(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*-\gamma^0\gamma^1\gamma^2\gamma^3\gamma^0C(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*\right] = 
+\]
+\[
+    \left[\text{Commutating, and considering $\gamma^\mu$ properties}\right]
+\]
+\[
+    = \frac{1}{4}\left[\gamma^0C+\cancel{i\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3}C-\cancel{i\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3C}-\gamma^0\gamma^1\gamma^2\gamma^3\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3C\right]
+    = \frac{1}{4}\left[\gamma^0C -\gamma^0C\right] = 0
+\]
+
+If we consider the other Majorana mass term:
+\[
+    \overline{\psi^{(c)} }\psi = \overline{\psi^{(c)}}_+\psi_+ + \overline{\psi^{(c)}}_-\psi_- + \overline{\psi^{(c)}}_-\psi_+ +\overline{\psi^{(c)}}_+\psi_-
+\]
+Then we can compute the third term:
+\[
+    \frac{1}{4}\psi^T(\mathbb{1}+i\gamma^0\gamma^1\gamma^2\gamma^3)^*C^\dagger\gamma^0(\mathbb{1}-i\gamma^0\gamma^1\gamma^2\gamma^3) \psi = 
+\]
+\[
+    \frac{1}{4}\psi^T(\mathbb{1}-i(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*)C^\dagger\gamma^0(\mathbb{1}-i\gamma^0\gamma^1\gamma^2\gamma^3) \psi =
+\]
+\[
+    \frac{1}{4}\left[C^\dagger\gamma^0-i(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*C^\dagger\gamma^0-iC^\dagger\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3-(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*C^\dagger\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3\right] = 
+\]
+\[
+    \frac{1}{4}\left[C^\dagger\gamma^0+\cancel{iC^\dagger\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3}-\cancel{iC^\dagger\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3}-C^\dagger\gamma^0\gamma^1\gamma^2\gamma^3\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3\right] = \frac{1}{4}\left[C^\dagger\gamma^0 - C^\dagger\gamma^0\right] = 0
+\]
+
+And the fourth term:
+\[
+    \frac{1}{4}\psi^T(\mathbb{1}-i\gamma^0\gamma^1\gamma^2\gamma^3)^*C^\dagger\gamma^0(\mathbb{1}+i\gamma^0\gamma^1\gamma^2\gamma^3) \psi = 
+\]
+\[
+    \frac{1}{4}\psi^T(\mathbb{1}+i(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*)C^\dagger\gamma^0(\mathbb{1}+i\gamma^0\gamma^1\gamma^2\gamma^3) \psi =
+\]
+\[
+    \frac{1}{4}\left[C^\dagger\gamma^0+i(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*C^\dagger\gamma^0+iC^\dagger\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3-(\gamma^0)^*(\gamma^1)^*(\gamma^2)^*(\gamma^3)^*C^\dagger\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3\right] = 
+\]
+\[
+    \frac{1}{4}\left[C^\dagger\gamma^0-\cancel{iC^\dagger\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3}+\cancel{iC^\dagger\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3}-C^\dagger\gamma^0\gamma^1\gamma^2\gamma^3\gamma^0\gamma^0\gamma^1\gamma^2\gamma^3\right] = \frac{1}{4}\left[C^\dagger\gamma^0 - C^\dagger\gamma^0\right] = 0
+\]
+
+Summing up, we see that the Majorana mass term decouples the two Weyl mass terms, which is the main difference with the Dirac mass terms which allow to treat the two different Weyl spinors independently.
+
+\qedwhite
+
+\color{black}
+
 \begin{enumerate}[label=(\alph*), start = 3]
     \item Consider the expansion of a Majorana spinor, that satisfies the condition $\psi^{(c)} = \psi$, in normal modes. Discuss the physical interpretation of the result.
 \end{enumerate}
+
+\color{blue}
+
+\textbf{Solution (c)}
+
+If we consider the expansion in normal modes of a general solution of the Dirac equation we get:
+\[
+    \hat{\psi}(\mathbf{x}) = \sum_{s=1}^2\int\frac{d^3p}{(2\pi)^3}\frac{1}{\sqrt{2E(\mathbf{p})}}\left\{\hat{b}_s(\mathbf{p})u_s(\mathbf{p})e^{i\mathbf{p}\cdot \mathbf{x}}+\hat{c}^\dagger_s(\mathbf{p})v_s(\mathbf{p})e^{-i\mathbf{p}\cdot\mathbf{x}}\right\}
+\]
+Let's now consider the charge conjugate of this field:
+\[
+    \hat{\psi}^{(c)}(\mathbf{x}) = C\sum_{s=1}^2\int\frac{d^3p}{(2\pi)^3}\frac{1}{\sqrt{2E(\mathbf{p})}}\left\{\hat{b}_s^\dagger (\mathbf{p})u_s^*(\mathbf{p})e^{-i\mathbf{p}\cdot \mathbf{x}}+\hat{c}_s(\mathbf{p})v_s^*(\mathbf{p})e^{i\mathbf{p}\cdot\mathbf{x}}\right\}
+\]
+If we equate this two equations we find by an inverse Fourier transformation that the following relations must be fulfilled:
+\[
+    \sum_{s=1}^2 \hat{b}_s(\mathbf{p})u_s(\mathbf{p}) = C\sum_{s=1}^2\hat{c}_s(\mathbf{p})v_s^*(\mathbf{p})
+\]
+\[
+    \sum_{s=1}^2 \hat{c}_s(\mathbf{p})^\dagger v_s(\mathbf{p}) = C\sum_{s=1}^2\hat{b}^\dagger_s(\mathbf{p})u_s^*(\mathbf{p})
+\]
+
+If we apply both equations we find that
+\[
+    \sum_{s=1}^2 \hat{b}_s(\mathbf{p})u_s(\mathbf{p}) = CC\sum_{s=1}^2\hat{b}_s(\mathbf{p})u_s(\mathbf{p}) \Longrightarrow CC = \mathbb{1}
+\]
+A way to fulfill this relations is to consider $\hat{b}_s(\mathbf{p})=\hat{c}_s(\mathbf{p})$ and consistently $u_s(\mathbf{p})=v_s^{(c)}(\mathbf{p})=Cv_s^*(\mathbf{p})$. This implies that that a Majorana particle does not have an antiparticle or conversely that it is its own antiparticle. That is $\hat{b}_s(\mathbf{p})$ and $\hat{c}_s(\mathbf{p})$ creates the same particle.
+
+\qedwhite
+
 \end{document}
